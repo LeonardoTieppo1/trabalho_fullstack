@@ -5,13 +5,13 @@ const mongoose = require('mongoose')
 
 const reciclagemSchema = mongoose.Schema({
 
-    item: { type: String, required: true },
+    item: { type: String },
 
-    imagem: { type: String, required: true },
+    imagem: { type: String },
 
-    peso: { type: Number, required: true },
+    peso: { type: Number },
 
-    data: { type: Date, required: true },
+    data: { type: Date },
 
     pontos: { type: mongoose.Types.ObjectId, required: true, ref: "Usuario" },
 

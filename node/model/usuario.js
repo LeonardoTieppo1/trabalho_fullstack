@@ -9,11 +9,11 @@ const usuarioSchema = mongoose.Schema({
 
     senha: { type: String, required: true },
 
-    pontos: { type: String, required: true },
+    pontos: { type: Number },
 
-    longitude: { type: String, required: true },
+    longitude: { type: Number },
 
-    latitude: { type: String, required: true },
+    latitude: { type: Number },
 
 })
 

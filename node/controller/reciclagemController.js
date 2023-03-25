@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
 
-
-
-
 const Reciclagem = require('../model/reciclagem');
 
 const Usuario = require('../model/usuario');
@@ -42,8 +39,6 @@ const reciclagem = async(UsuarioId) => {
 
 
     } catch (err) {
-
-
 
         console.log(err);
 
