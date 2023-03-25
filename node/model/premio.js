@@ -5,9 +5,11 @@ const mongoose = require('mongoose')
 
 const premioSchema = mongoose.Schema({
 
-    titulo: { type: String, required: true },
+    descricao: { type: String },
 
-    autor: { type: String, required: true }
+    pontos: { type: Number },
+
+    quantidade: { type: Number }
 
 })
 
