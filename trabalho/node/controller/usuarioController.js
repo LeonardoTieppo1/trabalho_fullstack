@@ -27,10 +27,10 @@ const login = (nome, senha) => {
     }
 }
 
-const update = async(id, newN) => {
+const update = async(id, newS) => {
     try {
 
-        const usuario = Usuario.updateOne({ _id: new mongoose.Types.ObjectId(id) }, { $set: { nome: newN } });
+        const usuario = Usuario.updateOne({ _id: new mongoose.Types.ObjectId(id) }, { $set: { senha: newS } });
 
         return usuario;
     } catch (err) {

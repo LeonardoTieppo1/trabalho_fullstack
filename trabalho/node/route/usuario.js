@@ -23,10 +23,43 @@ router.post('/usuario',
         }
     })
 
-router.post('/usuario/login/', (req, res) => {
+router.post('/usuario/login', (req, res) => {
     const login = UsuarioController.login(req.body.username, req.body.senha);
     if (login.valido) {
         res.json(login);
     } else res.status(401).json(login);
-});
+})
+
+router.put('/usuario/novasenha', (req, res) => {
+
+    if (UsuarioController.update(id, novaSenha)) {
+        res.json({ resultado: 'Senha alterada com sucesso!' });
+    } else res.status(400).json({ resultado: 'Problemas para alterar a senha' });
+})
+
+router.get('/usuario/:id', (req, res) => {
+
+    if (UsuarioController.read(id)) {
+        res.json({ resultado: 'Consulta realizada com sucesso!' });
+    } else res.status(400).json({ resultado: 'Sem usuarios' });
+})
+
+router.get('/usuarios', (req, res) => {
+    //const todos =UsuarioController.readAny()
+    res.json(UsuarioController.readAny())
+    res.status(400).json({ resultado: 'Problemas para alterar a senha' });
+})
+
+
+
+router.put('/usuario/deletar', (req, res) => {
+
+    if (UsuarioController.deletar(id)) {
+        res.json({ resultado: 'Usuario deletado!' });
+    } else res.status(400).json({ resultado: 'Usuario não identificado' });
+})
+
+
+
+
 module.exports = router;
