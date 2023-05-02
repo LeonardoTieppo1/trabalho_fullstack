@@ -13,9 +13,9 @@ const reciclagemSchema = mongoose.Schema({
 
     data: { type: Date },
 
-    pontos: { type: mongoose.Types.ObjectId, required: true, ref: "Usuario" },
+    pontos: { type: Number},
 
-    reciclagem: [{ type: mongoose.Types.ObjectId, ref: "Reciclagem" }],
+    usuario: { type: mongoose.Types.ObjectId, required: true, ref: "Usuario" },
 
 })
 

@@ -1,13 +1,10 @@
 const mongoose = require('mongoose')
 
-
-
-
 const usuarioSchema = mongoose.Schema({
 
-    nome: { type: String, required: true },
+    nome: { type: String },
 
-    senha: { type: String, required: true },
+    senha: { type: String },
 
     pontos: { type: Number },
 
@@ -16,9 +13,6 @@ const usuarioSchema = mongoose.Schema({
     latitude: { type: Number },
 
 })
-
-
-
 
 const Usuario = mongoose.model("Usuario", usuarioSchema)
 
