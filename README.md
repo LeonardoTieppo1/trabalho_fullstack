@@ -1,7 +1,7 @@
 # Documentação de Endpoint
 ## Usando o SWAGGER.JS
 ### Endpoint: POST
-#### Schema: Usuarios
+#### Schema: Usuario
 ```
 openapi: 3.0.9
 info:
