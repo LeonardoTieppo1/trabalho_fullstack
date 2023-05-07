@@ -18,6 +18,12 @@ components:
           type: string
         senha: 
           type: number
+        pontos:
+          type: number
+        latitude:
+          type: number
+        longitude:
+          type: number
 paths:
   /trabalho/usuarios:
     post:
