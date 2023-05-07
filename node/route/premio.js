@@ -24,7 +24,7 @@ router.post('/premio',
 router.put('/premio/novadesc/:id', async(req, res) => {
     const atualizar = await PremioController.update(req.params.id, req.body.newD)
     if (atualizar) {
-        res.json({ resultado: 'Descrição alterada com sucesso!' });
+        res.json({ resultado: 'Descrição alterada com sucesso!', premio: atualizar });
     } else res.status(400).json({ resultado: 'Problemas para alterar a descrição' });
 })
 
@@ -44,7 +44,7 @@ router.get('/premios', async(req, res) => {
 router.put('/premio/deletar/:id', async(req, res) => {
     const deletar = await PremioController.deletar(req.params.id)
     if (deletar) {
-        res.json({ resultado: 'Premio deletado!' });
+        res.json({ resultado: 'Premio deletado!', premio: deletar });
     } else res.status(400).json({ resultado: 'Premio não identificado' });
 })
 

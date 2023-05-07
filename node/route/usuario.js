@@ -24,7 +24,7 @@ router.post('/usuario',
     })
 
 router.post('/usuario/login', async(req, res) => {
-    const login = await UsuarioController.login(req.body.username, req.body.senha);
+    const login = await UsuarioController.login(req.body.username, req.body.senha, req.body.pontos, req.body.latitude, req.body.longitude);
     if (login) {
         res.json(login);
     } else res.status(401).json(login);
