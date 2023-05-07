@@ -1,15 +1,15 @@
 const express = require("express")
 const bodyParser = require("body-parser")
-const PremioController = require("../controller/usuarioController")
+const PremioController = require("../controller/premioController")
 const { body, validationResult, matchedData } = require("express-validator")
 const router = express.Router()
 
 router.use(bodyParser.json())
 
 router.post('/premio',
-    body('descrição').isString().withMessage("Username inválido"),
-    body('pontos').isString().withMessage("A senha deve ter menos de 6 caracteres"),
-    body('quantidade').isNumeric().withMessage("Pontos são apenas números"),
+    body('descricao').notEmpty().isString().withMessage("Descrição inválida"),
+    body('pontos').isNumeric().withMessage("Pontos são numeros"),
+    body('quantidade').isNumeric().withMessage("Quantidade são números"),
     async(req, res) => {
         console.log(matchedData(req));
         const validacao = validationResult(req).array();
@@ -31,7 +31,7 @@ router.put('/premio/novadesc/:id', async(req, res) => {
 router.get('/premio/:id', async(req, res) => {
     const consulta = await PremioController.read(req.params.id)
     if (consulta) {
-        res.json({ resultado: 'Consulta realizada com sucesso!' });
+        res.json({ resultado: 'Consulta realizada com sucesso!', premio: consulta });
     } else res.status(400).json({ resultado: 'Premio não identificado' });
 })
 

@@ -1,6 +1,6 @@
 const express = require("express")
 const bodyParser = require("body-parser")
-const ReciclagemController = require("../controller/usuarioController")
+const ReciclagemController = require("../controller/reciclagemController")
 const { body, validationResult, matchedData } = require("express-validator")
 const router = express.Router()
 
@@ -11,11 +11,13 @@ router.post('/reciclagem',
     body('imagem').isString().withMessage("A imagem é em string"),
     body('peso').isNumeric().withMessage("Pesos são apenas números"),
     body('data').isDate().withMessage("Data inválida"),
+    body('pontos').isNumeric().withMessage("Pontos são apenas números"),
+    body('usuario').isString().withMessage("Usuario não existe"),
     async(req, res) => {
         console.log(matchedData(req));
         const validacao = validationResult(req).array();
         if (validacao.length === 0) {
-            const novo = await ReciclagemController.criar(req.body.item, req.body.imagem);
+            const novo = await ReciclagemController.criar(req.body.item, req.body.imagem, req.body.peso, req.body.data, req.body.pontos, req.body.usuario);
             res.json({ resultado: 'Reciclagem criado!', reciclagem: novo });
         } else {
             res.status(401).json(validacao);
@@ -25,14 +27,14 @@ router.post('/reciclagem',
 router.put('/reciclagem/novaimagem/:id', async(req, res) => {
     const atualizar = await ReciclagemController.update(req.params.id, req.body.novaImagem)
     if (atualizar) {
-        res.json({ resultado: 'Imagem alterada com sucesso!' });
+        res.json({ resultado: 'Imagem alterada com sucesso!', reciclagem: atualizar });
     } else res.status(400).json({ resultado: 'Problemas para alterar a imagem' });
 })
 
 router.get('/reciclagem/:id', async(req, res) => {
     const consulta = await ReciclagemController.read(req.params.id)
     if (consulta) {
-        res.json({ resultado: 'Consulta realizada com sucesso!' });
+        res.json({ resultado: 'Consulta realizada com sucesso!', reciclagem: consulta });
     } else res.status(400).json({ resultado: 'O item não existe ou id incorreto' });
 })
 
@@ -41,7 +43,6 @@ router.get('/reciclagens', async(req, res) => {
     res.json(todos)
     res.status(400).json({ resultado: 'Reciclagem vázia' });
 })
-
 
 
 router.put('/reciclagem/deletar/:id', async(req, res) => {

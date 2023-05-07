@@ -3,10 +3,14 @@ const mongoose = require('mongoose')
 const express = require("express")
 
 const usuarioRoute = require("./route/usuario")
+const reciclagemRoute = require("./route/reciclagem")
+const premioRoute = require("./route/premio")
 
 const app = express()
 
 app.use(usuarioRoute)
+app.use(reciclagemRoute)
+app.use(premioRoute)
 
 app.get("/", (req, res) => {
     res.send("Hello World!")
