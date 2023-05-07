@@ -41,8 +41,6 @@ router.get('/premios', async(req, res) => {
     res.status(400).json({ resultado: 'Sem premios' });
 })
 
-
-
 router.put('/premio/deletar/:id', async(req, res) => {
     const deletar = await PremioController.deletar(req.params.id)
     if (deletar) {
