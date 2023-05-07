@@ -23,38 +23,38 @@ router.post('/usuario',
         }
     })
 
-router.post('/usuario/login', (req, res) => {
-    const login = UsuarioController.login(req.body.username, req.body.senha);
-    if (login.valido) {
+router.post('/usuario/login', async(req, res) => {
+    const login = await UsuarioController.login(req.body.username, req.body.senha);
+    if (login) {
         res.json(login);
     } else res.status(401).json(login);
 })
 
-router.put('/usuario/novasenha', (req, res) => {
-
-    if (UsuarioController.update(id, novaSenha)) {
+router.put('/usuario/novasenha/:id', async(req, res) => {
+    const atualizar = await UsuarioController.update(req.params.id, req.body.novaSenha)
+    if (atualizar) {
         res.json({ resultado: 'Senha alterada com sucesso!' });
     } else res.status(400).json({ resultado: 'Problemas para alterar a senha' });
 })
 
-router.get('/usuario/:id', (req, res) => {
-
-    if (UsuarioController.read(id)) {
+router.get('/usuario/:id', async(req, res) => {
+    const consulta = await UsuarioController.read(req.params.id)
+    if (consulta) {
         res.json({ resultado: 'Consulta realizada com sucesso!' });
     } else res.status(400).json({ resultado: 'Sem usuarios' });
 })
 
-router.get('/usuarios', (req, res) => {
-    //const todos =UsuarioController.readAny()
-    res.json(UsuarioController.readAny())
+router.get('/usuarios', async(req, res) => {
+    const todos = await UsuarioController.readAny()
+    res.json(todos)
     res.status(400).json({ resultado: 'Problemas para alterar a senha' });
 })
 
 
 
-router.put('/usuario/deletar', (req, res) => {
-
-    if (UsuarioController.deletar(id)) {
+router.put('/usuario/deletar/:id', async(req, res) => {
+    const deletar = UsuarioController.deletar(req.params.id)
+    if (deletar) {
         res.json({ resultado: 'Usuario deletado!' });
     } else res.status(400).json({ resultado: 'Usuario não identificado' });
 })
