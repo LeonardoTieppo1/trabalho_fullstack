@@ -31,16 +31,16 @@ router.post('/usuario/login', async(req, res) => {
 })
 
 router.put('/usuario/novasenha/:id', async(req, res) => {
-    const atualizar = await UsuarioController.update(req.params.id, req.body.novaSenha)
+    const atualizar = await UsuarioController.update(req.params.id, req.body.newS)
     if (atualizar) {
-        res.json({ resultado: 'Senha alterada com sucesso!' });
+        res.json({ resultado: 'Senha alterada com sucesso!', usuario: atualizar });
     } else res.status(400).json({ resultado: 'Problemas para alterar a senha' });
 })
 
 router.get('/usuario/:id', async(req, res) => {
     const consulta = await UsuarioController.read(req.params.id)
     if (consulta) {
-        res.json({ resultado: 'Consulta realizada com sucesso!' });
+        res.json({ resultado: 'Consulta realizada com sucesso!', usuario: consulta });
     } else res.status(400).json({ resultado: 'Sem usuarios' });
 })
 
@@ -55,7 +55,7 @@ router.get('/usuarios', async(req, res) => {
 router.put('/usuario/deletar/:id', async(req, res) => {
     const deletar = UsuarioController.deletar(req.params.id)
     if (deletar) {
-        res.json({ resultado: 'Usuario deletado!' });
+        res.json({ resultado: 'Usuario deletado!', usuario: deletar });
     } else res.status(400).json({ resultado: 'Usuario não identificado' });
 })
 

@@ -25,7 +25,7 @@ router.post('/reciclagem',
     })
 
 router.put('/reciclagem/novaimagem/:id', async(req, res) => {
-    const atualizar = await ReciclagemController.update(req.params.id, req.body.novaImagem)
+    const atualizar = await ReciclagemController.update(req.params.id, req.body.newI)
     if (atualizar) {
         res.json({ resultado: 'Imagem alterada com sucesso!', reciclagem: atualizar });
     } else res.status(400).json({ resultado: 'Problemas para alterar a imagem' });

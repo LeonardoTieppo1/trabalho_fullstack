@@ -3,9 +3,6 @@ const mongoose = require('mongoose');
 const Reciclagem = require('../model/reciclagem');
 
 
-
-
-
 const reciclagem = async(UsuarioId) => {
 
     const usuario = await Usuario.findById(UsuarioId).exec();
@@ -55,16 +52,12 @@ const criar = async(item, imagem, peso, data, pontos, usuario) => {
 
 const update = async(id, newI) => {
     try {
-
         const reciclagem = await Reciclagem.updateOne({ _id: new mongoose.Types.ObjectId(id) }, { $set: { item: newI } });
-
         return reciclagem
     } catch (err) {
         return console.error(err);
     }
 }
-
-
 
 const read = async(id) => {
     try {

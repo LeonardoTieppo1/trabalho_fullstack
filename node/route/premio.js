@@ -22,7 +22,7 @@ router.post('/premio',
     })
 
 router.put('/premio/novadesc/:id', async(req, res) => {
-    const atualizar = await PremioController.update(req.params.id, req.body.novaDesc)
+    const atualizar = await PremioController.update(req.params.id, req.body.newD)
     if (atualizar) {
         res.json({ resultado: 'Descrição alterada com sucesso!' });
     } else res.status(400).json({ resultado: 'Problemas para alterar a descrição' });
