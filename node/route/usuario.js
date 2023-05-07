@@ -16,7 +16,7 @@ router.post('/usuario',
         console.log(matchedData(req));
         const validacao = validationResult(req).array();
         if (validacao.length === 0) {
-            const novo = await UsuarioController.criar(req.body.nome, req.body.senha);
+            const novo = await UsuarioController.criar(req.body.nome, req.body.senha, req.body.pontos, req.body.latitude, req.body.longitude);
             res.json({ resultado: 'Usuário criado!', usuario: novo });
         } else {
             res.status(401).json(validacao);
@@ -24,7 +24,7 @@ router.post('/usuario',
     })
 
 router.post('/usuario/login', async(req, res) => {
-    const login = await UsuarioController.login(req.body.username, req.body.senha, req.body.pontos, req.body.latitude, req.body.longitude);
+    const login = await UsuarioController.login(req.body.username, req.body.senha);
     if (login) {
         res.json(login);
     } else res.status(401).json(login);
