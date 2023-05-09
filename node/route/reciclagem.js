@@ -41,7 +41,6 @@ router.get('/reciclagem/:id', async(req, res) => {
 router.get('/reciclagens', async(req, res) => {
     const todos = await ReciclagemController.readAny()
     res.json(todos)
-    res.status(400).json({ resultado: 'Reciclagem vázia' });
 })
 
 

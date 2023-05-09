@@ -38,7 +38,6 @@ router.get('/premio/:id', async(req, res) => {
 router.get('/premios', async(req, res) => {
     const todos = await PremioController.readAny()
     res.json(todos)
-    res.status(400).json({ resultado: 'Sem premios' });
 })
 
 router.put('/premio/deletar/:id', async(req, res) => {

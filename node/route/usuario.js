@@ -47,7 +47,6 @@ router.get('/usuario/:id', async(req, res) => {
 router.get('/usuarios', async(req, res) => {
     const todos = await UsuarioController.readAny()
     res.json(todos)
-    res.status(400).json({ resultado: 'Problemas para alterar a senha' });
 })
 
 
