@@ -67,3 +67,4 @@ module.exports.update = update;
 module.exports.read = read;
 module.exports.readAny = readAny;
 module.exports.deletar = deletar;
+module.exports.login=login;
