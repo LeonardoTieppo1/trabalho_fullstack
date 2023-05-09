@@ -9,11 +9,10 @@ const criar = async(descricao, pontos, quantidade) => {
 
 }
 
-const update = async(id, newD) => {
+const update = async(id, desc) => {
     try {
 
-        const premio = Premio.updateOne({ _id: new mongoose.Types.ObjectId(id) }, { $set: { descricao: newD } });
-
+        const premio = Premio.updateOne({ _id: new mongoose.Types.ObjectId(id) }, { $set: { descricao: desc } });
         return premio;
     } catch (err) {
         return console.error(err);

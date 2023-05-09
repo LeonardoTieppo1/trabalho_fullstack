@@ -31,7 +31,7 @@ router.post('/usuario/login', async(req, res) => {
 })
 
 router.put('/usuario/novasenha/:id', async(req, res) => {
-    const atualizar = await UsuarioController.update(req.params.id, req.body.newS)
+    const atualizar = await UsuarioController.update(req.params.id, req.body.senha)
     if (atualizar) {
         res.json({ resultado: 'Senha alterada com sucesso!', usuario: atualizar });
     } else res.status(400).json({ resultado: 'Problemas para alterar a senha' });
@@ -49,6 +49,7 @@ router.get('/usuarios', async(req, res) => {
     res.json(todos)
     res.status(400).json({ resultado: 'Problemas para alterar a senha' });
 })
+
 
 
 router.put('/usuario/deletar/:id', async(req, res) => {

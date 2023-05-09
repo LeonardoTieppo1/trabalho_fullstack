@@ -50,9 +50,9 @@ const criar = async(item, imagem, peso, data, pontos, usuario) => {
 
 }
 
-const update = async(id, newI) => {
+const update = async(id, img) => {
     try {
-        const reciclagem = await Reciclagem.updateOne({ _id: new mongoose.Types.ObjectId(id) }, { $set: { item: newI } });
+        const reciclagem = await Reciclagem.updateOne({ _id: new mongoose.Types.ObjectId(id) }, { $set: { imagem:img } });
         return reciclagem
     } catch (err) {
         return console.error(err);

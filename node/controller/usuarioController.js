@@ -17,28 +17,20 @@ const criar = async(nome, senha, pontos, latitude, longitude) => {
 var usuario = [];
 
 const login = (nome, senha) => {
-    if (usuario[nome]) {
-        const valido = mongoose.ObjectId(nome);
+        const valido = Usuario.findOne({nome: nome, senha: senha});
         if (valido) {
             return { valido: true };
         } else return { valido: false };
-    } else {
-        return { valido: false };
-    }
 }
 
-const update = async(id, newS) => {
+const update = async(id, senha) => {
     try {
-
-        const usuario = Usuario.updateOne({ _id: new mongoose.Types.ObjectId(id) }, { $set: { senha: newS } });
-
+        const usuario = Usuario.updateOne({ _id: new mongoose.Types.ObjectId(id) }, { $set: { senha: senha } });
         return usuario;
     } catch (err) {
         return console.error(err);
     }
 }
-
-
 
 const read = async(id) => {
     try {
