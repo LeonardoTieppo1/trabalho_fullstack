@@ -51,7 +51,6 @@ router.get('/usuarios', async(req, res) => {
 })
 
 
-
 router.put('/usuario/deletar/:id', async(req, res) => {
     const deletar = UsuarioController.deletar(req.params.id)
     if (deletar) {
