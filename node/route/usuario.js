@@ -3,7 +3,8 @@ const bodyParser = require("body-parser")
 const UsuarioController = require("../controller/usuarioController")
 const { body, validationResult, matchedData } = require("express-validator")
 const router = express.Router()
-
+var cors=require("cors")
+router.use(cors());
 router.use(bodyParser.json())
 
 router.post('/usuario',
