@@ -5,15 +5,20 @@ import { Html5Outlined, UserAddOutlined, QuestionCircleOutlined, DeleteOutlined 
 import Sider from 'antd/es/layout/Sider';
 import { RouterProvider, createBrowserRouter} from 'react-router-dom';
 import { Login } from './login';
-import { ComponentsU } from './ComponentsU';
+import { User } from './user';
+import { Users } from "./users";
 function App() {
 
   const rotas = createBrowserRouter([{
     path: '/',
     element: <Login/>
   }, {
-    path: '/user',
-    element: <ComponentsU/>
+    path: '/usuario',
+    element: <User/>
+  },
+  {
+    path: '/usuarios',
+    element: <Users/>
   },
   {
     path: '/login',
@@ -43,7 +48,7 @@ function App() {
       <Layout style={{ border: "1px solid black" }}>
         <Sider>
           <Menu onClick={itemMenuSelecionado}>
-            <Menu.Item icon={<UserAddOutlined />} key="/user">Users</Menu.Item>
+            <Menu.Item icon={<UserAddOutlined />} key="/usuario">Users</Menu.Item>
             <Menu.Item icon={<QuestionCircleOutlined />} key="/question">Duvidas</Menu.Item>
             <Menu.Item icon={<DeleteOutlined />} key="/exclude">Excluir</Menu.Item>
           </Menu>

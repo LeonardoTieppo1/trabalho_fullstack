@@ -2,8 +2,9 @@ const express = require("express")
 const bodyParser = require("body-parser")
 const PremioController = require("../controller/premioController")
 const { body, validationResult, matchedData } = require("express-validator")
+const cors = require("cors")
 const router = express.Router()
-
+router.use(cors)
 router.use(bodyParser.json())
 
 router.post('/premio',

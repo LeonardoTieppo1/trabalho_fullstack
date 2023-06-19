@@ -3,12 +3,12 @@ const bodyParser = require("body-parser")
 const UsuarioController = require("../controller/usuarioController")
 const { body, validationResult, matchedData } = require("express-validator")
 const router = express.Router()
-var cors=require("cors")
+var cors = require("cors")
 router.use(cors());
 router.use(bodyParser.json())
 
 router.post('/usuario',
-    body('nome').notEmpty().isString().withMessage("Username inválido"),
+    body('username').notEmpty().isString().withMessage("Username inválido"),
     body('senha').isNumeric().isLength({ max: 6 }).withMessage("A senha deve ter menos de 6 caracteres"),
     body('pontos').isNumeric().withMessage("Pontos são apenas números"),
     body('latitude').isNumeric().withMessage("Latitude são apenas números"),
@@ -17,7 +17,7 @@ router.post('/usuario',
         console.log(matchedData(req));
         const validacao = validationResult(req).array();
         if (validacao.length === 0) {
-            const novo = await UsuarioController.criar(req.body.nome, req.body.senha, req.body.pontos, req.body.latitude, req.body.longitude);
+            const novo = await UsuarioController.criar(req.body.username, req.body.senha, req.body.pontos, req.body.latitude, req.body.longitude);
             res.json({ resultado: 'Usuário criado!', usuario: novo });
         } else {
             res.status(401).json(validacao);
